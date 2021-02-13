@@ -5,7 +5,7 @@ version 0.1
 	a)first go to the directory with torrent file source code in the terminal 
 	b) enter command: node index.js <file path of torrent metadata file>
 
-3. tracker.js -> line 15: increment index if no response/blank peer list is received. Set index 0 initially if default doesn't work(default is 5)
+3. tracker.js -> line 15: increment index of announce list if no response/blank peer list is received. Set index 0 initially if default doesn't work(default is 5)
 
 4. There is scope for improvement that we have recognised and are planning to work on in the future like:
 	 a) iteration over index of announce list(urls) 
