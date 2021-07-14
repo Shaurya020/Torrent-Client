@@ -7,12 +7,12 @@ const crypto = require('crypto');
 const torrent_parser = require('./torrent_parser');
 const utils = require('./utils');
 
-//parrot.torrent-5 jsbook.torrent-3,5,8 photoshop.torrent-3.5 Main Get Peers function
+//parrot.torrent-5 jsbook.torrent-3,5,8 photoshop.torrent-2.5 Main Get Peers function
 module.exports.getPeers = (torrent, callback) => {
     const socket = dgram.createSocket('udp4');
 
     //SCOPE FOR IMPROVEMENT: Here we need to change the index manually 
-    const url = torrent["announce-list"][5].toString('utf8');
+    const url = torrent["announce-list"][2].toString('utf8');
 
     //const url = torrent.announce.toString('utf8');     //if announce-list is not defined
     connectRequest(socket, url);
@@ -54,7 +54,7 @@ function connectRequest(socket, main_url){
     buf.writeUInt32BE(0x27101980, 4);
     buf.writeUInt32BE(0,8);
     crypto.randomBytes(4).copy(buf,12);
-    console.log(url.port);
+    // console.log(url.port);
     socket.send(buf, 0, buf.length, url.port, url.hostname, ()=>{console.log("connect request sent")});
 }
 
@@ -89,7 +89,7 @@ function buildAnnounceRequest(connectionId, torrent, socket, main_url, port = 68
     buf.writeUInt32BE(0, 80);
     
     // ip address
-    buf.writeUInt32BE(0, 80);
+    buf.writeUInt32BE(0, 84);
     
     // key
     crypto.randomBytes(4).copy(buf, 88);

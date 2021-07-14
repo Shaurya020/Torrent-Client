@@ -1,5 +1,6 @@
 //Personal Client ID
 const crypto =require('crypto');
+// const Buffer = require('buffer').Buffer;
 
 let id= null;
 module.exports.generalId = () =>{

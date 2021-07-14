@@ -20,32 +20,32 @@ module.exports = class {
   }
   
   addRequested(pieceBlock) {
-    console.log("pB", pieceBlock);
     const blockIndex = pieceBlock.begin / tp.BLOCK_LEN;
     this._requested[pieceBlock.index][blockIndex] = true;
   }
-
+  
   addReceived(pieceBlock) {
     
+    // console.log("pB");
     const blockIndex = pieceBlock.begin / tp.BLOCK_LEN;
     this._received[pieceBlock.index][blockIndex] = true;
     
-    if(currentPiece != pieceBlock.index){
-      currentPiece = pieceBlock.index ;
-      piecesReceived = piecesReceived + 1;
-      if(100*(piecesReceived)/(totalPieces)<100){console.log("Download percentage: ", (100*(piecesReceived)/(totalPieces)), "%")};
-    }
+    // if(currentPiece != pieceBlock.index){
+    //   currentPiece = pieceBlock.index ;
+    //   piecesReceived = piecesReceived + 1;
+    //   if(100*(piecesReceived)/(totalPieces)<100){console.log("Download percentage: ", (100*(piecesReceived)/(totalPieces)), "%")};
+    // }
   }
 
   needed(pieceBlock) {
-    if (this._requested.every(blocks => blocks.every(i => i))) {
-      this._requested = this._received.map(blocks => blocks.slice());
+    if (this._requested.every(block => block.every(i => i))) {
+      this._requested = this._received.map(block => block.slice());
     }
     const blockIndex = pieceBlock.begin / tp.BLOCK_LEN;
     return !this._requested[pieceBlock.index][blockIndex];
   }
 
   isDone() {
-    return this._received.every(blocks => blocks.every(i => i));
+    return this._received.every(block => block.every(i => i));
   }
 };
