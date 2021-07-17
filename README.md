@@ -13,3 +13,5 @@ This is a torrent client built on bittorrent protocol, using NodeJS. It supports
 ## Scope for improvement
 - Automate process of iteration over index of announce list (URLs)
 - Add download speed and expected time of completion in Progress Bar.
+- Add feature to stop and resume download.
+- Reconnecting dropped connection.
